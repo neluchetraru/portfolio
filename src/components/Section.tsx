@@ -1,18 +1,60 @@
 import Item from "./Item";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+interface Project {
+  title: string;
+  description: string;
+  keywords?: string[];
+  image?: string;
+  timeSpan?: string;
+  link?: string;
+}
+
+interface Projects {
+  header: string;
+  projects: Project[];
+  followUp?: {
+    title: string;
+    link: string;
+  };
+}
 
 interface Props {
-    className?: string;
-    name: string;
+  className?: string;
+  name: string;
+  data: Projects;
 }
 
+const Section = ({ className, name, data }: Props) => {
+  return (
+    <div className={className}>
+      {data.header && <h1 className="text-3xl font-bold">{data.header}</h1>}
+      {data.projects.map((project) => (
+        <Item
+          title={project.title}
+          description={project.description}
+          keywords={project.keywords}
+          timeSpan={project.timeSpan}
+          image={project.image}
+          link={project.link}
+        />
+      ))}
 
-const Section = ({ className, name } : Props) => {
-    return (
-        <div className={className}>
-            <h1>{name}</h1>
-            <Item title="Build a spotify connected app" image="https://picsum.photos/200/300" description="Video course that teaches how to build a web app with the Spotify Web API. Topics covered include the principles of REST APIs, user auth flows, Node, Express, React, Styled Components, and more." keywords={["React", "express"]} />
-        </div>
-    )
-}
+      {data.followUp && (
+        <a
+          href={data.followUp.link}
+          className="font-medium group text-white mt-10 hover:underline w-auto inline-block decoration-teal-300"
+        >
+          {data.followUp.title}
+          <FontAwesomeIcon
+            icon={faArrowRight}
+            className="ml-2 inline-block group-hover:translate-x-2 transition-transform duration-200"
+          />
+        </a>
+      )}
+    </div>
+  );
+};
 
 export default Section;
