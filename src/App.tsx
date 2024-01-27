@@ -30,13 +30,13 @@ function App() {
       <div
         className="pointer-events-none fixed inset-0 z-30 transition duration-300 "
         style={{
-          background: `radial-gradient(300px at ${mousePos.x}px ${mousePos.y}px, rgba(23, 78, 216, 0.15), transparent 80%)`,
+          background: `radial-gradient(1200px at ${mousePos.x}px ${mousePos.y}px, rgba(23, 78, 216, 0.25), transparent 80%)`,
         }}
       ></div>
       <div className="flex min-h-screen font-sans lg:px-24 lg:py-0 bg-slate-900 text-teal-50">
         <Header className="flex-1 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:flex-col lg:justify-between lg:py-24" />
         <div className="flex-1">
-          <About className="min-h-screen lg:py-24" />
+          <About className="lg:py-24" />
           {/* <Section className="min-h-screen" name="Academic Projects" data={academicProjects} /> */}
           <Section
             className="min-h-screen"

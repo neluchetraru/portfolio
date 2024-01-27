@@ -18,7 +18,11 @@ const Item = ({
   return (
     <div className="flex mt-10">
       {image && (
-        <img src="https://picsum.photos/200/200" className="h-20" alt="" />
+        <img
+          src={process.env.PUBLIC_URL + image}
+          className="h-20"
+          alt={title}
+        />
       )}
 
       {timeSpan && (
@@ -44,7 +48,7 @@ const Item = ({
             keywords.map((keyword) => (
               <p
                 key={keyword}
-                className="mr-2 mt-3 bg-teal-400/10 px-4 rounded-xl text-teal-300 text-xs leading-6 font-medium"
+                className="mr-2 mt-3 cursor-default bg-teal-400/10 px-4 rounded-xl text-teal-300 text-xs leading-6 font-medium hover:bg-teal-400/5 hover:transition-all duration-200"
               >
                 {keyword}
               </p>

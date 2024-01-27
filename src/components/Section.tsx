@@ -29,7 +29,11 @@ interface Props {
 const Section = ({ className, name, data }: Props) => {
   return (
     <div className={className}>
-      {data.header && <h1 className="text-3xl font-bold">{data.header}</h1>}
+      {data.header && (
+        <h1 className="text-3xl font-semibold tracking-wider text-slate-200">
+          {data.header}
+        </h1>
+      )}
       {data.projects.map((project) => (
         <Item
           title={project.title}
