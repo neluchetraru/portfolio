@@ -3,6 +3,7 @@ import About from "./components/About";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import { academicProjects, personalProjects } from "./data";
+import Footer from "./components/Footer";
 
 interface MousePos {
   x: number;
@@ -37,12 +38,17 @@ function App() {
         <Header className="flex-1 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:flex-col lg:justify-between lg:py-24" />
         <div className="flex-1">
           <About className="lg:py-24" />
-          {/* <Section className="min-h-screen" name="Academic Projects" data={academicProjects} /> */}
           <Section
-            className="min-h-screen"
+            className="pb-24"
+            name="Academic Projects"
+            data={academicProjects}
+          />
+          <Section
+            className="pb-20"
             name="Personal Projects"
             data={personalProjects}
           />
+          <Footer className="text-slate-500 font-mono text-sm pb-5" />
         </div>
       </div>
     </>

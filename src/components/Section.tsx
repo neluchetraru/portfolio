@@ -36,6 +36,7 @@ const Section = ({ className, name, data }: Props) => {
       )}
       {data.projects.map((project) => (
         <Item
+          key={project.title}
           title={project.title}
           description={project.description}
           keywords={project.keywords}
@@ -47,8 +48,10 @@ const Section = ({ className, name, data }: Props) => {
 
       {data.followUp && (
         <a
-          href={data.followUp.link}
+          href={process.env.PUBLIC_URL + data.followUp.link}
           className="font-medium group text-white mt-10 hover:underline w-auto inline-block decoration-teal-300"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {data.followUp.title}
           <FontAwesomeIcon

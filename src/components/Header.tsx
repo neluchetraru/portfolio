@@ -37,7 +37,9 @@ const Header = ({ className }: Props) => {
   return (
     <div className={className}>
       <div>
-        <h1 className="text-4xl font-bold tracking-wide">Ion Chetraru</h1>
+        <a className="text-4xl font-bold tracking-wide" href="/">
+          Ion Chetraru
+        </a>
         <h2 className="text-xl font-medium text-slate-300 mt-4">
           Software Engineer
         </h2>
