@@ -16,32 +16,30 @@ const Item = ({
   link,
 }: Props) => {
   return (
-    <div className="flex mt-10">
+    <a
+      className="flex mt-10 cursor-pointer group flex-col-reverse ml-0 sm:ml-5 sm:flex-row"
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {image && (
         <img
           src={process.env.PUBLIC_URL + image}
-          className="h-20"
+          className="sm:h-20 sm:w-full w-1/2 pt-4 sm:pt-0"
           alt={title}
         />
       )}
 
       {timeSpan && (
-        <p className="text-slate-500 text-xs font-semibold mt-1 tracking-wide flex-grow">
+        <p className="text-slate-500 text-xs font-semibold mt-4 sm:mt-1 tracking-wide flex-grow">
           {timeSpan}
         </p>
       )}
 
-      <div className="flex flex-col ml-5">
-        <div>
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-slate-200 leading-tight hover:text-teal-300 inline-block "
-          >
-            {title}
-          </a>
-        </div>
+      <div className="flex flex-col ml-0 sm:ml-5">
+        <h1 className="font-medium text-slate-200 leading-tight group-hover:text-teal-300 inline-block ">
+          {title}
+        </h1>
         <p className="mt-2 text-sm text-slate-400 w-full">{description}</p>
         <div className="flex items-center flex-wrap">
           {keywords &&
@@ -55,7 +53,7 @@ const Item = ({
             ))}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

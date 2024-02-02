@@ -20,13 +20,6 @@ export const academicProjects: Projects = {
     header: "Academic Projects",
     projects: [
         {
-            timeSpan: '2022',
-            title: 'RoboRally: A Multiplayer (Board)Game',
-            link: 'https://github.com/JiananAlvin/02160_roborally',
-            description: 'This project is a digital adaptation of the board game RoboRally. The game is a turn-based multiplayer game where players control robots and compete with each other. The server is implemented with Node.js and Express.js, and the client is implemented with Java (MVC). The server and client communicate through web sockets. The game is deployed on Heroku and Netlify.',
-            keywords: ['Java', 'Agile', 'MVC', 'Node.js', 'Express.js', 'Web Sockets', 'Heroku', 'Netlify', 'TDD', 'CI/CD', 'Git', 'MongoDB', 'Cucumber', 'Postman'],
-        },
-        {
             timeSpan: '2023',
             title: 'Bachelor Thesis: Development of a device for the digitalization of paper-based diagnostic markers',
             description: `This digitalization of paper-based diagnosis markers combines knowledge of
@@ -35,7 +28,15 @@ export const academicProjects: Projects = {
             the LED. The software provides the user with an interface for easy data manipulation and easy control of the testing process. Finally, knowledge of LFA
             prototyping and 3D printing techniques is required to develop and test the device aimed to be developed in this thesis.`,
             keywords: ['LFA Prototyping', '3D Printing (resin + PLA)', 'Color Sensor', 'User Interface (touchscreen display)', 'MicroPython', 'ESP32', 'HTML', 'CSS', 'JavaScript', 'REST API', 'Node.js', 'Electron', 'chart.js'],
-        }, {
+        },
+        {
+            timeSpan: '2022',
+            title: 'RoboRally: A Multiplayer (Board)Game',
+            link: 'https://github.com/JiananAlvin/02160_roborally',
+            description: 'This project is a digital adaptation of the board game RoboRally. The game is a turn-based multiplayer game where players control robots and compete with each other. The server is implemented with Node.js and Express.js, and the client is implemented with Java (MVC). The server and client communicate through web sockets. The game is deployed on Heroku and Netlify.',
+            keywords: ['Java', 'Agile', 'MVC', 'Node.js', 'Express.js', 'Web Sockets', 'Heroku', 'Netlify', 'TDD', 'CI/CD', 'Git', 'MongoDB', 'Cucumber', 'Postman'],
+        },
+        {
             timeSpan: '2022',
             title: 'DB-4: Autonomous devices for controlling and studying living',
             link: 'https://github.com/neluchetraru/DB4',

@@ -13,6 +13,20 @@ interface MousePos {
 function App() {
   const [mousePos, setMousePos] = useState({} as MousePos);
 
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       setMousePos({ x: event.x, y: event.y } as MousePos);
@@ -28,16 +42,19 @@ function App() {
 
   return (
     <>
-      <div
-        className="pointer-events-none fixed inset-0 z-30 transition duration-300 "
-        style={{
-          background: `radial-gradient(1200px at ${mousePos.x}px ${mousePos.y}px, rgba(23, 78, 216, 0.25), transparent 80%)`,
-        }}
-      ></div>
-      <div className="flex min-h-screen font-sans lg:px-24 lg:py-0 bg-slate-900 text-teal-50">
-        <Header className="flex-1 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:flex-col lg:justify-between lg:py-24" />
+      {!isMobile && (
+        <div
+          className="pointer-events-none fixed inset-0 z-30 transition duration-300"
+          style={{
+            background: `radial-gradient(1200px at ${mousePos.x}px ${mousePos.y}px, rgba(23, 78, 216, 0.25), transparent 80%)`,
+          }}
+        />
+      )}
+
+      <div className="flex min-h-screen font-sans px-10 xl:px-32 lg:px-20 md:px-20 sm:px-11 bg-slate-900 text-teal-50 flex-col lg:flex-row">
+        <Header className="flex-1 lg:sticky md:top-0 lg:flex md:max-h-screen lg:flex-col lg:justify-between lg:py-24 md:py-20 py-10" />
         <div className="flex-1">
-          <About className="lg:py-24" />
+          <About className="lg:py-24 md:py-20 py-10" />
           <Section
             className="pb-24"
             name="Academic Projects"
