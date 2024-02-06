@@ -7,10 +7,9 @@ const About = ({ className }: Props) => {
     <div className={className}>
       <p className="text-slate-400 text-lg font-medium tracking-normal mb-5">
         My journey into web development began in 2016 at the age of 15 with a
-        basic HTML page. I then started learning into CSS and JS, dedicating
-        over 100 hours to Udemy courses and YouTube videos, mastering key
-        concepts. This self-taught phase ignited my passion for Software
-        Engineering.
+        basic HTML page. I then started learning CSS and JS, dedicating over 100
+        hours to Udemy courses and YouTube videos, mastering key concepts. This
+        self-taught phase ignited my passion for Software Engineering.
       </p>
 
       <p className="text-slate-400 text-lg font-medium tracking-normal mb-5">
