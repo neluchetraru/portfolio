@@ -2,7 +2,6 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-
   "homepage": "https://ion-chetraru.me",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -24,7 +23,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --cname=ion-chetraru.me",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
