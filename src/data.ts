@@ -55,6 +55,13 @@ export const personalProjects: Projects = {
     header: "Personal Projects",
     projects: [
         {
+            title: 'Link-sharing App',
+            link: 'https://github.com/neluchetraru/link-sharing-app',
+            description: 'A modern link-sharing application built as a solution to the Frontend Mentor challenge. This full-stack application allows users to create and share their social media profiles through a clean, intuitive interface. Built with Next.js 14, the app features secure authentication via Kinde, seamless image uploads with uploadthing, and robust form handling using @tanstack/react-query. The UI is crafted using shadcn-ui components, ensuring a polished and responsive user experience.',
+            keywords: ['Next.js 14', 'TypeScript', 'shadcn-ui', 'Kinde Auth', 'uploadthing', '@tanstack/react-query', 'Prisma'],
+            image: '/link-sharing-app.png',
+        },
+        {
             image: '/recipes-project.png',
             title: 'Recipe Project',
             link: 'https://github.com/neluchetraru/recipes-project',
@@ -74,7 +81,8 @@ export const personalProjects: Projects = {
             link: 'https://github.com/neluchetraru/task-manager',
             description: `The "Task Manager API" is a RESTful backend built with Node.js and Express.js, offering a robust foundation for managing tasks. The API incorporates secure authentication through jsonwebtoken (JWT) and bcryptjs, ensuring data integrity and user privacy. MongoDB, facilitated by mongoose, is employed for efficient schema design and aggregations, enabling seamless storage and retrieval of task-related information. To handle media uploads, Multer is integrated, enhancing the API's versatility. Altogether, the "Task Manager API" provides a scalable and secure solution for managing tasks, with a well-designed architecture that incorporates authentication, MongoDB, and media handling features.`,
             keywords: ['Express.js', 'Node.js', 'MongoDB', 'Mongoose', 'Multer', 'JWT', 'bcryptjs'],
-        }
+        },
+
 
     ],
 }

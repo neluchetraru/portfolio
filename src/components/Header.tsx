@@ -1,5 +1,7 @@
+import About from "./About";
 import SocialMedia from "./SocialMedia";
 import TechStack from "./TechStack";
+import SectionIndicator from "./SectionIndicator";
 
 import {
   faJava,
@@ -49,6 +51,8 @@ const Header = ({ className }: Props) => {
 
         <TechStack faStack={techStack} />
       </div>
+
+      <SectionIndicator className="py-8" />
 
       <SocialMedia className="flex items-center" />
     </div>
