@@ -1,9 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInstagram,
-  faLinkedin,
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
   className: string;
@@ -36,7 +32,7 @@ const SocialMedia = ({ className }: Props) => {
             >
               <FontAwesomeIcon icon={social.icon} size="xl" color="" />
             </a>
-          )
+          ),
       )}
     </div>
   );

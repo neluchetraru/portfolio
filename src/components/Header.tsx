@@ -1,4 +1,3 @@
-import About from "./About";
 import SocialMedia from "./SocialMedia";
 import TechStack from "./TechStack";
 import SectionIndicator from "./SectionIndicator";
