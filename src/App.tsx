@@ -331,7 +331,10 @@ function ProjectRow({ project, i }: { project: Project; i: number }) {
           width={1200}
           height={750}
           loading={i === 0 ? 'eager' : 'lazy'}
-          className="mt-5 aspect-[16/10] w-full rounded-md border border-white/10 object-cover object-top shadow-[0_20px_40px_-24px_rgb(28_25_23/0.35)] md:hidden"
+          className="mt-5 aspect-[16/10] w-full rounded-md border border-white/10 object-cover object-top md:hidden"
+          style={{
+            boxShadow: '0 0 32px -8px color-mix(in oklch, var(--pa) 40%, transparent)'
+          }}
         />
 
         <p className="mt-4 max-w-2xl leading-relaxed text-stone-300">{project.description}</p>
@@ -374,7 +377,7 @@ function ProjectRow({ project, i }: { project: Project; i: number }) {
             className="aspect-[16/10] w-full rounded-md border border-white/10 bg-stone-900 object-cover object-top transition-transform duration-300 motion-safe:group-hover:-translate-y-1 motion-safe:group-hover:rotate-0"
             style={{
               boxShadow:
-                '0 20px 40px -24px rgb(28 25 23 / 0.35), 0 24px 48px -20px color-mix(in oklch, var(--pa) 30%, transparent)'
+                '0 0 36px -6px color-mix(in oklch, var(--pa) 45%, transparent), 0 0 90px -12px color-mix(in oklch, var(--pa) 35%, transparent)'
             }}
           />
         </a>
