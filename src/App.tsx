@@ -468,7 +468,7 @@ export default function App() {
         {/* work */}
         <section id="work" className="scroll-mt-16">
           <h2 className="reveal pb-8 text-sm font-medium uppercase tracking-[0.25em] text-faint">
-            Selected work — five projects, all deployed
+            Selected work — six projects, all deployed
           </h2>
           {PROJECTS.map((project, i) => (
             <ProjectRow key={project.name} project={project} i={i} />

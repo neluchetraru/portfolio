@@ -76,6 +76,19 @@ export const PROJECTS: Project[] = [
     accent: 'oklch(70% 0.16 25)',
     image: '/shots/labyrinth.webp',
     alt: '3D labyrinth gameplay: a wooden tilting board with a ball, walls and holes'
+  },
+  {
+    index: '06',
+    name: 'parsely',
+    tagline: 'Invoice extraction, measured',
+    description:
+      'LLM document extraction with the part most AI demos skip: a public evals dashboard. A reproducible golden dataset of 30 synthetic invoices scores every model and prompt version on per-field accuracy, cost and latency — the v1 eval caught a real date-parsing bug, and prompt v2 took the cheap model from 93% to 100% at the same cost.',
+    stack: ['Next.js', 'TypeScript', 'Claude API', 'PostgreSQL', 'Prisma', 'daisyUI'],
+    live: 'https://parsely.ionchetraru.me',
+    source: 'https://github.com/neluchetraru/parsely',
+    accent: 'oklch(76% 0.14 163)',
+    image: '/shots/parsely.webp',
+    alt: 'parsely landing page with sample invoices and an upload dropzone on a graph-paper background'
   }
 ]
 
