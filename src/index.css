@@ -8,7 +8,7 @@
   --color-ink: #1c1917;
   --color-paper: #fafaf8;
   --color-accent: #d97706;
-  --color-faint: #78716c;
+  --color-faint: #57534e;
 }
 
 html {
@@ -19,16 +19,37 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
-  /* subtle paper grain */
-  background-image: radial-gradient(circle, rgba(28, 25, 23, 0.045) 1px, transparent 1px);
+}
+
+/* paper grain, confined to the top of the page */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(28, 25, 23, 0.05) 1px, transparent 1px);
   background-size: 26px 26px;
+  mask-image: linear-gradient(to bottom, black 55%, transparent 95%);
+}
+
+/* Fraunces personality at display sizes */
+.font-display {
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* entrance on load (hero) */
 @keyframes rise {
   from {
     opacity: 0;
@@ -44,9 +65,28 @@ body {
   animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rise {
     animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
   html {
     scroll-behavior: auto;
