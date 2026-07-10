@@ -21,7 +21,7 @@ export const PROJECTS: Project[] = [
     stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Better Auth', 'Tailwind'],
     live: 'https://devlinks.ionchetraru.me',
     source: 'https://github.com/neluchetraru/link-sharing-app',
-    accent: 'oklch(51% 0.21 293)',
+    accent: 'oklch(72% 0.16 293)',
     image: '/shots/devlinks.webp',
     alt: 'devlinks landing page with a phone mockup showing a link-in-bio profile'
   },
@@ -34,7 +34,7 @@ export const PROJECTS: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL', 'Prisma', 'sharp'],
     live: 'https://wallshot.ionchetraru.me',
     source: 'https://github.com/neluchetraru/wallshot',
-    accent: 'oklch(62% 0.15 60)',
+    accent: 'oklch(76% 0.13 65)',
     image: '/shots/wallshot.webp',
     alt: 'wallshot design tool with a photo positioned inside a framed poster mockup'
   },
@@ -47,7 +47,7 @@ export const PROJECTS: Project[] = [
     stack: ['React', 'socket.io', 'Express', 'SQLite', 'TypeScript', 'Vite'],
     live: 'https://rooms.ionchetraru.me',
     source: 'https://github.com/neluchetraru/rooms',
-    accent: 'oklch(58% 0.11 220)',
+    accent: 'oklch(74% 0.10 220)',
     image: '/shots/rooms.webp',
     alt: 'rooms chat interface showing a live conversation with a typing indicator'
   },
@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
     stack: ['React', 'dnd-kit', 'Express', 'MongoDB', 'TypeScript'],
     live: 'https://taskboard.ionchetraru.me',
     source: 'https://github.com/neluchetraru/taskboard',
-    accent: 'oklch(58% 0.14 150)',
+    accent: 'oklch(74% 0.14 150)',
     image: '/shots/taskboard.webp',
     alt: 'taskboard kanban view with tasks in To do, In progress and Done columns'
   },
@@ -73,7 +73,7 @@ export const PROJECTS: Project[] = [
     stack: ['WebGPU', 'WGSL', 'Ammo.js', 'JavaScript'],
     live: 'https://labyrinth.ionchetraru.me',
     source: 'https://github.com/neluchetraru/webgpu-labyrinth',
-    accent: 'oklch(55% 0.19 25)',
+    accent: 'oklch(70% 0.16 25)',
     image: '/shots/labyrinth.webp',
     alt: '3D labyrinth gameplay: a wooden tilting board with a ball, walls and holes'
   }
@@ -87,18 +87,18 @@ export interface Tool {
 }
 
 export const TOOLS: Tool[] = [
-  { symbol: 'Ts', name: 'TypeScript', detail: 'strict, everywhere', accent: 'oklch(51% 0.21 293)' },
-  { symbol: 'Re', name: 'React / Next.js', detail: 'app router era', accent: 'oklch(51% 0.21 293)' },
-  { symbol: 'Tw', name: 'Tailwind CSS', detail: 'v4, design tokens', accent: 'oklch(51% 0.21 293)' },
-  { symbol: 'No', name: 'Node.js', detail: 'express, ESM', accent: 'oklch(58% 0.14 150)' },
-  { symbol: 'Pg', name: 'PostgreSQL', detail: 'via Prisma', accent: 'oklch(58% 0.11 220)' },
-  { symbol: 'Mo', name: 'MongoDB', detail: 'via Mongoose', accent: 'oklch(58% 0.11 220)' },
-  { symbol: 'Sq', name: 'SQLite', detail: 'WAL mode', accent: 'oklch(58% 0.11 220)' },
-  { symbol: 'St', name: 'Stripe', detail: 'checkout + webhooks', accent: 'oklch(62% 0.15 60)' },
-  { symbol: 'Ws', name: 'WebSockets', detail: 'socket.io, typed', accent: 'oklch(58% 0.14 150)' },
-  { symbol: 'Wg', name: 'WebGPU', detail: 'WGSL, no engine', accent: 'oklch(55% 0.19 25)' },
-  { symbol: 'Dk', name: 'Docker', detail: 'Coolify · Hetzner', accent: 'oklch(62% 0.15 60)' },
-  { symbol: 'Gt', name: 'Git / CI', detail: 'gh cli, actions', accent: 'oklch(62% 0.15 60)' }
+  { symbol: 'Ts', name: 'TypeScript', detail: 'strict, everywhere', accent: 'oklch(72% 0.16 293)' },
+  { symbol: 'Re', name: 'React / Next.js', detail: 'app router era', accent: 'oklch(72% 0.16 293)' },
+  { symbol: 'Tw', name: 'Tailwind CSS', detail: 'v4, design tokens', accent: 'oklch(72% 0.16 293)' },
+  { symbol: 'No', name: 'Node.js', detail: 'express, ESM', accent: 'oklch(74% 0.14 150)' },
+  { symbol: 'Pg', name: 'PostgreSQL', detail: 'via Prisma', accent: 'oklch(74% 0.10 220)' },
+  { symbol: 'Mo', name: 'MongoDB', detail: 'via Mongoose', accent: 'oklch(74% 0.10 220)' },
+  { symbol: 'Sq', name: 'SQLite', detail: 'WAL mode', accent: 'oklch(74% 0.10 220)' },
+  { symbol: 'St', name: 'Stripe', detail: 'checkout + webhooks', accent: 'oklch(76% 0.13 65)' },
+  { symbol: 'Ws', name: 'WebSockets', detail: 'socket.io, typed', accent: 'oklch(74% 0.14 150)' },
+  { symbol: 'Wg', name: 'WebGPU', detail: 'WGSL, no engine', accent: 'oklch(70% 0.16 25)' },
+  { symbol: 'Dk', name: 'Docker', detail: 'Coolify · Hetzner', accent: 'oklch(76% 0.13 65)' },
+  { symbol: 'Gt', name: 'Git / CI', detail: 'gh cli, actions', accent: 'oklch(76% 0.13 65)' }
 ]
 
 export const LINKS = {

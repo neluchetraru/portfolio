@@ -5,10 +5,11 @@
 @theme {
   --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
   --font-body: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --color-ink: #1c1917;
-  --color-paper: #fafaf8;
-  --color-accent: #d97706;
-  --color-faint: #57534e;
+  /* dark theme: ink is the light foreground, paper is the dark ground */
+  --color-ink: #f2efe9;
+  --color-paper: #14120f;
+  --color-accent: #f59e0b;
+  --color-faint: #a8a29e;
 }
 
 html {
@@ -21,16 +22,6 @@ body {
   font-family: var(--font-body);
 }
 
-/* paper grain, confined to the top of the page */
-.grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(28, 25, 23, 0.05) 1px, transparent 1px);
-  background-size: 26px 26px;
-  mask-image: linear-gradient(to bottom, black 55%, transparent 95%);
-}
-
 /* Fraunces personality at display sizes */
 .font-display {
   font-optical-sizing: auto;
@@ -38,7 +29,7 @@ body {
 }
 
 ::selection {
-  background: var(--color-ink);
+  background: var(--color-accent);
   color: var(--color-paper);
 }
 

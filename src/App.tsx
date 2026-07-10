@@ -36,6 +36,113 @@ const MailIcon = () => (
   </svg>
 )
 
+/* animated network background */
+function LiveBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+
+    let width = 0
+    let height = 0
+    let nodes: { x: number; y: number; vx: number; vy: number }[] = []
+    let raf = 0
+
+    const LINK_DISTANCE = 150
+    const SPEED = 0.25
+
+    const resize = () => {
+      width = window.innerWidth
+      height = window.innerHeight
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+      const target = Math.min(90, Math.floor((width * height) / 22000))
+      nodes = Array.from({ length: target }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * SPEED * 2,
+        vy: (Math.random() - 0.5) * SPEED * 2
+      }))
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height)
+
+      for (const node of nodes) {
+        node.x += node.vx
+        node.y += node.vy
+        if (node.x < -20) node.x = width + 20
+        if (node.x > width + 20) node.x = -20
+        if (node.y < -20) node.y = height + 20
+        if (node.y > height + 20) node.y = -20
+      }
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x
+          const dy = nodes[i].y - nodes[j].y
+          const dist = Math.hypot(dx, dy)
+          if (dist < LINK_DISTANCE) {
+            const alpha = (1 - dist / LINK_DISTANCE) * 0.11
+            ctx.strokeStyle = `rgba(242, 239, 233, ${alpha})`
+            ctx.lineWidth = 1
+            ctx.beginPath()
+            ctx.moveTo(nodes[i].x, nodes[i].y)
+            ctx.lineTo(nodes[j].x, nodes[j].y)
+            ctx.stroke()
+          }
+        }
+      }
+
+      for (const node of nodes) {
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.45)'
+        ctx.beginPath()
+        ctx.arc(node.x, node.y, 1.4, 0, Math.PI * 2)
+        ctx.fill()
+      }
+    }
+
+    const loop = () => {
+      draw()
+      raf = requestAnimationFrame(loop)
+    }
+
+    resize()
+    window.addEventListener('resize', resize)
+    if (reducedMotion) {
+      draw() // static constellation, no animation
+    } else {
+      loop()
+    }
+
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-0"
+      style={{
+        maskImage: 'linear-gradient(to bottom, black, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.35))'
+      }}
+    />
+  )
+}
+
 /* reveal-on-scroll */
 function useReveal() {
   useEffect(() => {
@@ -106,7 +213,7 @@ function SectionRail() {
           </span>
           <span
             className={`rounded-full transition-all duration-300 ${
-              active === id ? 'h-2 w-6 bg-accent' : 'size-2 bg-stone-300 group-hover/rail:bg-stone-400'
+              active === id ? 'h-2 w-6 bg-accent' : 'size-2 bg-stone-700 group-hover/rail:bg-stone-500'
             }`}
           />
         </a>
@@ -119,11 +226,11 @@ function SectionRail() {
 type ContributionDay = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 }
 
 const LEVEL_COLORS = [
-  'rgba(28, 25, 23, 0.06)',
-  'color-mix(in oklch, #d97706 25%, #fafaf8)',
-  'color-mix(in oklch, #d97706 50%, #fafaf8)',
-  'color-mix(in oklch, #d97706 75%, #fafaf8)',
-  '#b45309'
+  'rgba(242, 239, 233, 0.07)',
+  'color-mix(in oklch, #f59e0b 30%, #14120f)',
+  'color-mix(in oklch, #f59e0b 55%, #14120f)',
+  'color-mix(in oklch, #f59e0b 80%, #14120f)',
+  '#f59e0b'
 ]
 
 function Contributions() {
@@ -149,14 +256,14 @@ function Contributions() {
   }
 
   return (
-    <section id="activity" className="reveal scroll-mt-16 border-t border-stone-300 py-16">
+    <section id="activity" className="reveal scroll-mt-16 border-t border-stone-800 py-16">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-sm font-medium uppercase tracking-[0.25em] text-faint">
           A year of commits
         </h2>
         <a
           href={LINKS.github}
-          className="font-mono text-xs text-faint underline decoration-stone-300 underline-offset-4 hover:decoration-[var(--color-accent)]"
+          className="font-mono text-xs text-faint underline decoration-stone-600 underline-offset-4 hover:decoration-[var(--color-accent)]"
         >
           {days ? `${total.toLocaleString()} contributions — ` : ''}@{LINKS.githubUser}
         </a>
@@ -194,7 +301,7 @@ function Contributions() {
 function ProjectRow({ project, i }: { project: Project; i: number }) {
   return (
     <article
-      className="reveal group relative grid gap-5 border-t border-stone-300 py-10 md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,24rem)] md:items-start md:gap-10 md:py-14"
+      className="reveal group relative grid gap-5 border-t border-stone-800 py-10 md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,24rem)] md:items-start md:gap-10 md:py-14"
       style={{ '--pa': project.accent } as React.CSSProperties}
     >
       <span className="hidden font-display text-4xl font-extralight md:block" style={{ color: 'var(--pa)' }}>
@@ -215,7 +322,7 @@ function ProjectRow({ project, i }: { project: Project; i: number }) {
             </a>
           </h3>
         </div>
-        <p className="mt-1 font-display text-lg italic text-stone-600">{project.tagline}</p>
+        <p className="mt-1 font-display text-lg italic text-stone-400">{project.tagline}</p>
 
         {/* mobile figure */}
         <img
@@ -224,10 +331,10 @@ function ProjectRow({ project, i }: { project: Project; i: number }) {
           width={1200}
           height={750}
           loading={i === 0 ? 'eager' : 'lazy'}
-          className="mt-5 aspect-[16/10] w-full rounded-md border border-stone-300/70 object-cover object-top shadow-[0_20px_40px_-24px_rgb(28_25_23/0.35)] md:hidden"
+          className="mt-5 aspect-[16/10] w-full rounded-md border border-white/10 object-cover object-top shadow-[0_20px_40px_-24px_rgb(28_25_23/0.35)] md:hidden"
         />
 
-        <p className="mt-4 max-w-2xl leading-relaxed text-stone-700">{project.description}</p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-stone-300">{project.description}</p>
         <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-faint">
           {project.stack.map((tech) => (
             <li key={tech}>{tech}</li>
@@ -244,7 +351,7 @@ function ProjectRow({ project, i }: { project: Project; i: number }) {
           <a
             href={project.source}
             aria-label={`${project.name} — source code on GitHub`}
-            className="group/btn inline-flex min-h-11 items-center gap-1.5 rounded-full border border-stone-300 px-5 py-2 text-sm font-medium text-stone-700 transition-colors hover:border-stone-500"
+            className="group/btn inline-flex min-h-11 items-center gap-1.5 rounded-full border border-stone-700 px-5 py-2 text-sm font-medium text-stone-300 transition-colors hover:border-stone-400"
           >
             Source <ArrowUpRight />
           </a>
@@ -264,7 +371,7 @@ function ProjectRow({ project, i }: { project: Project; i: number }) {
             width={1200}
             height={750}
             loading={i === 0 ? 'eager' : 'lazy'}
-            className="aspect-[16/10] w-full rounded-md border border-stone-300/70 bg-white object-cover object-top transition-transform duration-300 motion-safe:group-hover:-translate-y-1 motion-safe:group-hover:rotate-0"
+            className="aspect-[16/10] w-full rounded-md border border-white/10 bg-stone-900 object-cover object-top transition-transform duration-300 motion-safe:group-hover:-translate-y-1 motion-safe:group-hover:rotate-0"
             style={{
               boxShadow:
                 '0 20px 40px -24px rgb(28 25 23 / 0.35), 0 24px 48px -20px color-mix(in oklch, var(--pa) 30%, transparent)'
@@ -281,10 +388,10 @@ export default function App() {
 
   return (
     <div className="relative">
-      <div className="grain" aria-hidden />
+      <LiveBackground />
       <SectionRail />
 
-      <div className="relative mx-auto max-w-6xl px-6 pb-24">
+      <div className="relative z-[1] mx-auto max-w-6xl px-6 pb-24">
         {/* header */}
         <header className="flex items-center justify-between py-8 text-sm">
           <span className="font-display text-lg font-semibold">
@@ -322,7 +429,7 @@ export default function App() {
             Chetraru<span className="text-accent">.</span>
           </h1>
           <p
-            className="rise mt-8 max-w-xl text-lg leading-relaxed text-stone-700"
+            className="rise mt-8 max-w-xl text-lg leading-relaxed text-stone-300"
             style={{ animationDelay: '160ms' }}
           >
             I build products end to end — payments, real-time systems, render
@@ -336,19 +443,19 @@ export default function App() {
           >
             <a
               href={LINKS.github}
-              className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-4 py-2 transition-colors hover:border-stone-500"
+              className="inline-flex items-center gap-2 rounded-full border border-stone-700 px-4 py-2 transition-colors hover:border-stone-400"
             >
               <GitHubIcon /> GitHub
             </a>
             <a
               href={LINKS.linkedin}
-              className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-4 py-2 transition-colors hover:border-stone-500"
+              className="inline-flex items-center gap-2 rounded-full border border-stone-700 px-4 py-2 transition-colors hover:border-stone-400"
             >
               <LinkedInIcon /> LinkedIn
             </a>
             <a
               href={`mailto:${LINKS.email}`}
-              className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-4 py-2 transition-colors hover:border-stone-500"
+              className="inline-flex items-center gap-2 rounded-full border border-stone-700 px-4 py-2 transition-colors hover:border-stone-400"
             >
               <MailIcon /> Email
             </a>
@@ -366,7 +473,7 @@ export default function App() {
         </section>
 
         {/* stack — periodic table of tools */}
-        <section className="reveal border-t border-stone-300 py-16">
+        <section className="reveal border-t border-stone-800 py-16">
           <h2 className="text-sm font-medium uppercase tracking-[0.25em] text-faint">
             Periodic table of tools
           </h2>
@@ -374,7 +481,7 @@ export default function App() {
             {TOOLS.map((tool, i) => (
               <li
                 key={tool.symbol}
-                className="group/tile relative rounded-md border border-stone-300 bg-white/70 p-3 transition-all duration-200 hover:-translate-y-1"
+                className="group/tile relative rounded-md border border-white/10 bg-white/[0.04] p-3 transition-all duration-200 hover:-translate-y-1"
                 style={{ '--ta': tool.accent } as React.CSSProperties}
               >
                 <span
@@ -396,11 +503,11 @@ export default function App() {
         <Contributions />
 
         {/* contact */}
-        <section id="contact" className="reveal scroll-mt-16 border-t border-stone-300 py-28">
+        <section id="contact" className="reveal scroll-mt-16 border-t border-stone-800 py-28">
           <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Let&apos;s build <span className="italic text-stone-600">something</span>
+            Let&apos;s build <span className="italic text-stone-400">something</span>
           </h2>
-          <p className="mt-4 max-w-xl leading-relaxed text-stone-700">
+          <p className="mt-4 max-w-xl leading-relaxed text-stone-300">
             Found a bug in one of the projects above? Even better — email me.
           </p>
           <a
